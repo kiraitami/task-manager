@@ -10,18 +10,4 @@ class User extends Model {
   static User of(BuildContext context) => ScopedModel.of<User>(context);
 
 
-  }
-
-  /*
-  Future<Null> _loadCurrentUser() async {
-    if (firebaseUser != null){
-      firebaseUser = await _auth.currentUser();
-    }
-
-    else {
-      if ()
-    }
-  }
-*/
-
 }
