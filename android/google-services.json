@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "875858916713",
+    "firebase_url": "https://task-manager-11281.firebaseio.com",
+    "project_id": "task-manager-11281",
+    "storage_bucket": "task-manager-11281.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875858916713:android:fcc2bd7e778276eaf939f8",
+        "android_client_info": {
+          "package_name": "com.kiraitami.flutter_app_task_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875858916713-bnkm81hths5fot9j6cr0nct4hbc8skjl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kiraitami.flutter_app_task_manager",
+            "certificate_hash": "5a201c5a9aa562f758e8675cfeb93996e1ddfef0"
+          }
+        },
+        {
+          "client_id": "875858916713-i4j8jlcs4q71a0dqsvf102hgiukpckm4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtw7ASq2ak9hiW0SUMLyqXiqc68bvJF4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875858916713-i4j8jlcs4q71a0dqsvf102hgiukpckm4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
