@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_task_manager/screens/login_screen.dart';
+import 'package:scoped_model/scoped_model.dart';
+
+import 'models/user.dart';
 
 void main() {
-
-  //AGORA VAI PORRAAAAA
-
+  runApp(MaterialApp(
+    home: LoginScreen(),
+    debugShowCheckedModeBanner: false
+  ))  ;
 }
