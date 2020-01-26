@@ -10,4 +10,5 @@ class User extends Model {
   static User of(BuildContext context) => ScopedModel.of<User>(context);
 
 
+
 }
