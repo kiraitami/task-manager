@@ -48,7 +48,7 @@ class _Register_ScreenState extends State<Register_Screen> {
               child: TextFormField(
                 decoration: InputDecoration(
                     hintText: 'Password',
-                    prefixIcon: Icon(Icons.email)
+                    prefixIcon: Icon(Icons.enhanced_encryption)
                 ),
                 obscureText: true,
                 validator: (text){
@@ -69,7 +69,7 @@ class _Register_ScreenState extends State<Register_Screen> {
               child: TextFormField(
                 decoration: InputDecoration(
                     hintText: 'Retype Password',
-                    prefixIcon: Icon(Icons.email)
+                    prefixIcon: Icon(Icons.enhanced_encryption)
                 ),
                 obscureText: true,
                 validator: (text){
