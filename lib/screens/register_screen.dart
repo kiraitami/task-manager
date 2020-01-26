@@ -21,41 +21,60 @@ class _Register_ScreenState extends State<Register_Screen> {
       body: Form (
         child: Column(
         children: <Widget>[
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: 'Email',
-              prefixIcon: Icon(Icons.email)
+
+          Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Align(
+              alignment: Alignment.center,
+              child: TextFormField(
+                decoration: InputDecoration(
+                    hintText: 'Email',
+                    prefixIcon: Icon(Icons.email)
+                ),
+                keyboardType: TextInputType.emailAddress,
+                validator: (text){
+                  if(text.isEmpty) return 'Insert your email';
+                },
+              ),
             ),
-            keyboardType: TextInputType.emailAddress,
-            validator: (text){
-              if(text.isEmpty) return 'Insert your email';
-            },
           ),
 
-          TextFormField(
-            decoration: InputDecoration(
-                hintText: 'Password',
-                prefixIcon: Icon(Icons.email)
+          Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Align(
+              alignment: Alignment.center,
+              child: TextFormField(
+                decoration: InputDecoration(
+                    hintText: 'Password',
+                    prefixIcon: Icon(Icons.email)
+                ),
+                obscureText: true,
+                validator: (text){
+                  setState(() {
+                    _password = text;
+                  });
+                  if(text.isEmpty) return 'password';
+                },
+              ),
             ),
-            obscureText: true,
-            validator: (text){
-              setState(() {
-                _password = text;
-              });
-              if(text.isEmpty) return 'password';
-            },
           ),
 
-          TextFormField(
-            decoration: InputDecoration(
-                hintText: 'Retype Password',
-                prefixIcon: Icon(Icons.email)
-            ),
-            obscureText: true,
-            validator: (text){
-              if(text.isEmpty) return 'Retype your password';
-              if(_password != text) return 'Passwords doesn\'t match.' ;
-            },
+          Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Align(
+              alignment: Alignment.center,
+              child: TextFormField(
+                decoration: InputDecoration(
+                    hintText: 'Retype Password',
+                    prefixIcon: Icon(Icons.email)
+                ),
+                obscureText: true,
+                validator: (text){
+                  if(text.isEmpty) return 'Retype your password';
+                  if(_password != text) return 'Passwords doesn\'t match.' ;
+                },
+              ),
+            )
           ),
 
           Padding (
@@ -64,12 +83,26 @@ class _Register_ScreenState extends State<Register_Screen> {
               alignment: Alignment.center,
               child: FlatButton(
                 child: Text(
-                  'Registrar'
+                  'Register'
+                ),
+                onPressed: (){},
+              ),
+            ),
+          ),
+
+          Padding (
+            padding: EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.center,
+              child: FlatButton(
+                child: Text(
+                  'already have a account?'
                 ),
                 onPressed: (){},
               ),
             ),
           )
+
         ],
         ),
       )
