@@ -22,6 +22,7 @@ class _Register_ScreenState extends State<Register_Screen> {
         child: Column(
         children: <Widget>[
 
+          //Email Input
           Padding(
             padding: EdgeInsets.all(20.0),
             child: Align(
@@ -39,6 +40,7 @@ class _Register_ScreenState extends State<Register_Screen> {
             ),
           ),
 
+          //Password Input
           Padding(
             padding: EdgeInsets.all(20.0),
             child: Align(
@@ -59,6 +61,7 @@ class _Register_ScreenState extends State<Register_Screen> {
             ),
           ),
 
+          //Retype Password Input
           Padding(
             padding: EdgeInsets.all(20.0),
             child: Align(
@@ -77,6 +80,7 @@ class _Register_ScreenState extends State<Register_Screen> {
             )
           ),
 
+          //Button Register
           Padding (
             padding: EdgeInsets.all(8.0),
             child: Align(
@@ -90,6 +94,7 @@ class _Register_ScreenState extends State<Register_Screen> {
             ),
           ),
 
+          //Button Return (already have a account)
           Padding (
             padding: EdgeInsets.all(8.0),
             child: Align(
