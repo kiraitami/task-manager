@@ -7,6 +7,5 @@ import 'models/user.dart';
 void main() {
   runApp(MaterialApp(
     home: LoginScreen(),
-    debugShowCheckedModeBanner: false
-  ))  ;
+  )) ;
 }
