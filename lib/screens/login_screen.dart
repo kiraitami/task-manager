@@ -63,6 +63,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   child: Text('Login')
               ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: FlatButton(
+                onPressed: (){
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Register_Screen())
+                  );
+                },
+                child: Text('Register Now'),
+              ),
             )
 
 

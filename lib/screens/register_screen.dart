@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_task_manager/screens/login_screen.dart';
 
 class Register_Screen extends StatefulWidget {
   @override
@@ -103,7 +104,11 @@ class _Register_ScreenState extends State<Register_Screen> {
                 child: Text(
                   'already have a account?'
                 ),
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => LoginScreen())
+                  );
+                },
               ),
             ),
           )
