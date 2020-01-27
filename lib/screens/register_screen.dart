@@ -113,7 +113,17 @@ class _Register_ScreenState extends State<Register_Screen> {
                 child: Text(
                   'Register'
                 ),
-                onPressed: (){},
+                onPressed: (){
+                  User user  = User();
+                  if (_nameController.text.isNotEmpty)
+                    user.name = _nameController.text;
+
+                  if (_emailController.text.isNotEmpty)
+                    user.email = _emailController.text;
+
+                  if (_passController.text.isNotEmpty)
+                    user.createUserInFirebase(user.email, _passController.text);
+                },
               ),
             ),
           ),
@@ -128,16 +138,9 @@ class _Register_ScreenState extends State<Register_Screen> {
                   'already have a account?'
                 ),
                 onPressed: (){
-                  User user  = User();
-                  if (_nameController.text.isNotEmpty)
-                    user.name = _nameController.text;
-
-                  if (_emailController.text.isNotEmpty)
-                    user.email = _emailController.text;
-
-                  if (_passController.text.isNotEmpty)
-                    user.createUserInFirebase(user.email, _passController.text);
-
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => LoginScreen())
+                  );
                 },
               ),
             ),
