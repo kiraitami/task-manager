@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
             length: choices.length,
             child: Scaffold(
               appBar: AppBar(
-                title: const Text('Menu Principal'),
+                title: const Text('Main Menu'),
                 bottom: TabBar(
                   isScrollable: true,
                   tabs: choices.map((Choice choice) {
@@ -27,7 +27,7 @@ import 'package:flutter/material.dart';
               body: TabBarView(
                 children: choices.map((Choice choice){
                   return Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: ChoiceCard(choice: choice),
                   );
                 }).toList(),
@@ -46,8 +46,8 @@ import 'package:flutter/material.dart';
     }
 
     const List<Choice> choices = const <Choice>[
-      const Choice(title: 'Tasks', icon: Icons.check_circle),
-      const Choice(title: 'Groups', icon: Icons.supervised_user_circle),
+      const Choice(title: '            Tasks             ', icon: Icons.check_circle),
+      const Choice(title: '            Groups            ', icon: Icons.supervised_user_circle),
     ];
 
     class ChoiceCard extends StatelessWidget {
