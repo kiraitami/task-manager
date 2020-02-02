@@ -14,7 +14,11 @@ class TaskDetails extends StatefulWidget {
        ),
       body: SingleChildScrollView(
         child: Column(
+          children: <Widget>[
+            FractionallySizedBox(widthFactor: 90,
+            child: Text("Nome Tarefa haha"),)
 
+          ],
 
         ),
       )
