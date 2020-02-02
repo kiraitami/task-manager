@@ -45,25 +45,8 @@ class User extends Model {
 
   }
 
-  Future<User> login(String email, String password) async {
-    FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then(
-        (user) async {
-          Firestore.instance.collection('user').document(user.uid).get().then(
-              (snapshot){
-                this.email = snapshot.data['email'];
-                this.name = snapshot.data['name'];
-                this.tasklist = snapshot.data['tasklist'];
-                this.grouplist = snapshot.data['grouplist'];
-              }
-          ).catchError( (error) {
+  Future<bool> login(String password) async {
 
-          });
-
-        }
-    ).catchError((error) {
-      print(error);
-      notifyListeners();
-    });
   }
 
 }
