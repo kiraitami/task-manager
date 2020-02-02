@@ -9,7 +9,15 @@ class TaskDetails extends StatefulWidget {
    @override
    Widget build(BuildContext context) {
      return Scaffold(
+       appBar: AppBar(
+         title: Text('Task Details'),
+       ),
+      body: SingleChildScrollView(
+        child: Column(
 
+
+        ),
+      )
      );
    }
  }
