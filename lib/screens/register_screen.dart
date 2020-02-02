@@ -25,129 +25,131 @@ class _Register_ScreenState extends State<Register_Screen> {
         ),
       ),
       body: Form (
-        child: Column(
-        children: <Widget>[
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
 
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(
-                    hintText: 'Name',
-                    prefixIcon: Icon(Icons.person)
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                        hintText: 'Name',
+                        prefixIcon: Icon(Icons.person)
+                    ),
+                    validator: (text){
+                      if(text.isEmpty) return 'Insert your name';
+                    },
+                  ),
                 ),
-                validator: (text){
-                  if(text.isEmpty) return 'Insert your name';
-                },
               ),
-            ),
+              //Email Input
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                        hintText: 'Email',
+                        prefixIcon: Icon(Icons.email)
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (text){
+                      if(text.isEmpty) return 'Insert your email';
+                    },
+                  ),
+                ),
+              ),
+
+              //Password Input
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Password',
+                        prefixIcon: Icon(Icons.enhanced_encryption)
+                    ),
+                    obscureText: true,
+                    validator: (text){
+                      setState(() {
+                        _password = text;
+                      });
+                      if(text.isEmpty) return 'password';
+                    },
+                  ),
+                ),
+              ),
+
+              //Retype Password Input
+              Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: TextFormField(
+                      controller: _passController,
+                      decoration: InputDecoration(
+                          hintText: 'Retype Password',
+                          prefixIcon: Icon(Icons.enhanced_encryption)
+                      ),
+                      obscureText: true,
+                      validator: (text){
+                        if(text.isEmpty) return 'Retype your password';
+                        if(_password != text) return 'Passwords doesn\'t match.' ;
+                      },
+                    ),
+                  )
+              ),
+
+              //Button Register
+              Padding (
+                padding: EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: FlatButton(
+                    child: Text(
+                        'Register'
+                    ),
+                    onPressed: (){
+                      User user  = User();
+                      if (_nameController.text.isNotEmpty)
+                        user.name = _nameController.text;
+
+                      if (_emailController.text.isNotEmpty)
+                        user.email = _emailController.text;
+
+                      if (_passController.text.isNotEmpty)
+                        user.createUserInFirebase(user.email, _passController.text);
+                    },
+                  ),
+                ),
+              ),
+
+              //Button Return (already have a account)
+              Padding (
+                padding: EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: FlatButton(
+                    child: Text(
+                        'already have a account?'
+                    ),
+                    onPressed: (){
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => LoginScreen())
+                      );
+                    },
+                  ),
+                ),
+              )
+
+            ],
           ),
-          //Email Input
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                    hintText: 'Email',
-                    prefixIcon: Icon(Icons.email)
-                ),
-                keyboardType: TextInputType.emailAddress,
-                validator: (text){
-                  if(text.isEmpty) return 'Insert your email';
-                },
-              ),
-            ),
-          ),
-
-          //Password Input
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    hintText: 'Password',
-                    prefixIcon: Icon(Icons.enhanced_encryption)
-                ),
-                obscureText: true,
-                validator: (text){
-                  setState(() {
-                    _password = text;
-                  });
-                  if(text.isEmpty) return 'password';
-                },
-              ),
-            ),
-          ),
-
-          //Retype Password Input
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: TextFormField(
-                controller: _passController,
-                decoration: InputDecoration(
-                    hintText: 'Retype Password',
-                    prefixIcon: Icon(Icons.enhanced_encryption)
-                ),
-                obscureText: true,
-                validator: (text){
-                  if(text.isEmpty) return 'Retype your password';
-                  if(_password != text) return 'Passwords doesn\'t match.' ;
-                },
-              ),
-            )
-          ),
-
-          //Button Register
-          Padding (
-            padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: FlatButton(
-                child: Text(
-                  'Register'
-                ),
-                onPressed: (){
-                  User user  = User();
-                  if (_nameController.text.isNotEmpty)
-                    user.name = _nameController.text;
-
-                  if (_emailController.text.isNotEmpty)
-                    user.email = _emailController.text;
-
-                  if (_passController.text.isNotEmpty)
-                    user.createUserInFirebase(user.email, _passController.text);
-                },
-              ),
-            ),
-          ),
-
-          //Button Return (already have a account)
-          Padding (
-            padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: FlatButton(
-                child: Text(
-                  'already have a account?'
-                ),
-                onPressed: (){
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => LoginScreen())
-                  );
-                },
-              ),
-            ),
-          )
-
-        ],
-        ),
+        )
       )
 
 

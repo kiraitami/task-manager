@@ -41,6 +41,7 @@ class User extends Model {
       'tasklist' : this.tasklist,
       'grouplist' : this.grouplist,
     };
+
     Firestore.instance.collection('user').document(this.id).setData( await map);
 
   }

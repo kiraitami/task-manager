@@ -6,8 +6,10 @@ class Task extends Model {
   String taskId;
   String name;
   String description;
-  List<Goal> goallist;
+  List<Goal> goalList;
 
-  Task();
+  Task(this.name, this.description);
+
+
 
 }
