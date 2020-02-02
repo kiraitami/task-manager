@@ -11,6 +11,8 @@ class User extends Model {
   String id;
   String name;
   String email;
+  List<String> tasklist;
+  List<String> grouplist;
 
   static User of(BuildContext context) => ScopedModel.of<User>(context);
   
@@ -36,9 +38,32 @@ class User extends Model {
       'id' : this.id,
       'name' : this.name,
       'email' : this.email,
+      'tasklist' : this.tasklist,
+      'grouplist' : this.grouplist,
     };
     Firestore.instance.collection('user').document(this.id).setData( await map);
 
+  }
+
+  Future<User> login(String email, String password) async {
+    FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then(
+        (user) async {
+          Firestore.instance.collection('user').document(user.uid).get().then(
+              (snapshot){
+                this.email = snapshot.data['email'];
+                this.name = snapshot.data['name'];
+                this.tasklist = snapshot.data['tasklist'];
+                this.grouplist = snapshot.data['grouplist'];
+              }
+          ).catchError( (error) {
+
+          });
+
+        }
+    ).catchError((error) {
+      print(error);
+      notifyListeners();
+    });
   }
 
 }

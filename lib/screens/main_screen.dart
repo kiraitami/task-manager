@@ -12,7 +12,7 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         title: Text('Main'),
       ),
-      body: ,
+      body: Container(),
     );
   }
 }
