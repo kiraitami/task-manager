@@ -24,7 +24,6 @@ class User extends Model {
               notifyListeners();
             }
     ).catchError( (error) {
-      print('aaaaaaaaaaaaaaaaaaaaaaaaaa');
       print(error);
       notifyListeners();
     });
