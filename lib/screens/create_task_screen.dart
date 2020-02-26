@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CreateTask extends StatefulWidget {
@@ -114,6 +115,14 @@ class _CreateTaskState extends State<CreateTask> {
       'description': _descController.text,
       'value': _valueController.text
     };
+
+    Map<String, dynamic> task ={
+      'id': await taskId
+    };
+
+    FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
+
+    Firestore.instance.collection('user').document(await currentUser.uid).collection('taskList').add(task);
 
     Firestore.instance.collection('tasks').document(await taskId).setData(map).then(
         (v) => Navigator.pop(context)

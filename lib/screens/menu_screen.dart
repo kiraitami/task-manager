@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_task_manager/adapters/task_adapter.dart';
+import 'package:flutter_app_task_manager/models/task.dart';
 import 'package:flutter_app_task_manager/screens/create_task_screen.dart';
 
 
@@ -9,13 +12,20 @@ enum TAB_NAME {
 
 
 class MenuScreen extends StatefulWidget {
+  
+  final _userId;
+  MenuScreen(this._userId);
+  
   @override
-  _MenuScreenState createState() => _MenuScreenState();
+  _MenuScreenState createState() => _MenuScreenState(_userId);
 }
 
 class _MenuScreenState extends State<MenuScreen> {
 
   var _desiredTab = TAB_NAME.TASK;
+  final _userId;
+  
+  _MenuScreenState(this._userId);
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +45,36 @@ class _MenuScreenState extends State<MenuScreen> {
               }).toList(),
             ),
           ),
+
+
           body: TabBarView(
             children: choices.map((Choice choice){
               return Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: ChoiceCard(choice: choice),
+                child: FutureBuilder<QuerySnapshot>(
+                  future: Firestore.instance.collection('user').document(_userId).collection('taskList').getDocuments(),
+                  builder: (context, snapshot) {
+                    if(!snapshot.hasData){
+                      return Center(child: CircularProgressIndicator());
+                    }
+                    else {
+                      print(snapshot.data.documents);
+                      print(snapshot.data.documents.length);
+
+                      return ListView.builder(
+                        itemCount: snapshot.data.documents.length,
+                        itemBuilder: (context, index){
+                          return TaskAdapter( Firestore.instance.collection('tasks').document( snapshot.data.documents[index]['id'] ).get() );
+                        }
+                      );
+                    }
+                  },
+                )
               );
             }).toList(),
           ),
+
+
           floatingActionButton: FloatingActionButton(
             onPressed: (){
               _loadScreen(_desiredTab);
@@ -52,6 +84,7 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
     );
   }
+
 
 
 
@@ -72,8 +105,8 @@ class Choice {
 }
 
 const List<Choice> choices = const <Choice>[
-  const Choice(title: '            Tasks             ', icon: Icons.check_circle),
-  const Choice(title: '            Groups            ', icon: Icons.supervised_user_circle),
+  const Choice(title: '            Tasks             '),
+  const Choice(title: '            Groups            '),
 ];
 
 class ChoiceCard extends StatelessWidget {
