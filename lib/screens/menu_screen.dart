@@ -64,7 +64,7 @@ class _MenuScreenState extends State<MenuScreen> {
                       return ListView.builder(
                         itemCount: snapshot.data.documents.length,
                         itemBuilder: (context, index){
-                          return TaskAdapter( Firestore.instance.collection('tasks').document( snapshot.data.documents[index]['id'] ).get() );
+                          return TaskAdapter( snapshot.data.documents[index]['id'] );
                         }
                       );
                     }

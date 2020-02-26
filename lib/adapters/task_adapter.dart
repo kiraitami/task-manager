@@ -4,9 +4,9 @@ import 'package:flutter_app_task_manager/models/task.dart';
 
 class TaskAdapter extends StatelessWidget {
 
-  final Future<DocumentSnapshot> _task;
+  final String _taskID;
 
-  TaskAdapter(this._task);
+  TaskAdapter(this._taskID);
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +18,35 @@ class TaskAdapter extends StatelessWidget {
       child: Card(
         child: Container(
           padding: EdgeInsets.all(8.0),
-          child: Text( _geTaskFromFirebase().name ),
+          child: FutureBuilder<DocumentSnapshot>(
+            future: Firestore.instance.collection('tasks').document(_taskID).get(),
+            builder: (context, snapshot) {
+              if(!snapshot.hasData){
+                return Center(child: CircularProgressIndicator());
+              }
+              else {
+                return _taskTile(snapshot);
+              }
+            },
+          ),
         ),
       ),
     );
   }
 
-  Task _geTaskFromFirebase() {
-    Task task;
-    _task.then(
-            (map){
-         task = Task.fromDocument(map);
-        }
+
+  Container _taskTile(AsyncSnapshot snapshot){
+    return Container(
+      padding: EdgeInsets.all(7.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+            Text(snapshot.data['name'], style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(snapshot.data['description']),
+            Text(snapshot.data['value'], style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
+      ),
     );
-    return task;
   }
 }
