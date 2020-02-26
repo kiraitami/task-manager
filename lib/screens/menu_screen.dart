@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_task_manager/adapters/task_adapter.dart';
 import 'package:flutter_app_task_manager/models/task.dart';
 import 'package:flutter_app_task_manager/screens/create_task_screen.dart';
+import 'package:flutter_app_task_manager/adapters/group_adapter.dart';
 
 
 enum TAB_NAME {
