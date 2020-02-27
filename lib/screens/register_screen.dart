@@ -123,7 +123,7 @@ class _Register_ScreenState extends State<Register_Screen> {
                         user.email = _emailController.text;
 
                       if (_passController.text.isNotEmpty)
-                        user.createUserInFirebase(user.email, _passController.text);
+                        user.createUserInFirebase(user.email, _passController.text, context);
                     },
                   ),
                 ),
@@ -156,3 +156,4 @@ class _Register_ScreenState extends State<Register_Screen> {
     );
   }
 }
+
