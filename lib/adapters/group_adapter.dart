@@ -18,13 +18,13 @@ class GroupAdapter extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(8.0),
           child: FutureBuilder<DocumentSnapshot>(
-            future: Firestore.instance.collection('group').document(_groupID).get(),
+            future: Firestore.instance.collection('groups').document(_groupID).get(),
             builder: (context, snapshot) {
               if(!snapshot.hasData){
                 return Center(child: CircularProgressIndicator());
               }
               else {
-                return _taskTile(snapshot);
+                return _groupTile(snapshot);
               }
             },
           ),
@@ -34,14 +34,14 @@ class GroupAdapter extends StatelessWidget {
   }
 
 
-  Container _taskTile(AsyncSnapshot snapshot){
+  Container _groupTile(AsyncSnapshot snapshot){
     return Container(
       padding: EdgeInsets.all(7.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Text(snapshot.data['groupname'], style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(snapshot.data['name'], style: TextStyle(fontWeight: FontWeight.bold)),
           ],
       ),
     );
