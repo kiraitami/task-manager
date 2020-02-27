@@ -14,8 +14,6 @@ class _CreateGroupState extends State<CreateGroup> {
 
   final _nameController = TextEditingController();
   final _emailsController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-
   List _invitedUsers = [];
 
   @override
@@ -25,11 +23,10 @@ class _CreateGroupState extends State<CreateGroup> {
         title: Text('Create Group'),
       ),
       body:Column(
-        //crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+         mainAxisAlignment: MainAxisAlignment.center,
 
         children: <Widget>[
-
           Padding(
             padding: EdgeInsets.all(20.0),
             child: Align(
@@ -47,8 +44,8 @@ class _CreateGroupState extends State<CreateGroup> {
           ),
 
 
-          Padding(
-            padding: EdgeInsets.all(20.0),
+          Container(
+            padding: EdgeInsets.fromLTRB(16.0, 8.0, 8.0, 26.0),
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -72,7 +69,7 @@ class _CreateGroupState extends State<CreateGroup> {
 
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.only(top: 8.0),
+              padding: EdgeInsets.all(4.0),
               itemCount: _invitedUsers.length,
               itemBuilder: buildInvitedList,
             ),
@@ -80,12 +77,6 @@ class _CreateGroupState extends State<CreateGroup> {
 
         ],
       )
-      /*Form (
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: ,
-          )
-      ),*/
     );
   }
 
@@ -101,7 +92,10 @@ class _CreateGroupState extends State<CreateGroup> {
         ),
       ),
       direction: DismissDirection.startToEnd,
-      child: Text(_invitedUsers[index]),
+      child: ListTile(
+        title: Text(_invitedUsers[index], style: TextStyle(fontSize: 18.0)),
+      ),
+
       onDismissed: (direction){
         setState(() {
           _invitedUsers.removeAt(index);
