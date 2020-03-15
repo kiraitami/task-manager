@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.all(20.0),
                 child: FlatButton(
                     onPressed: () async {
-                      FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text, password: _passController.text).then(
+                      FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text.trim(), password: _passController.text).then(
                               (usersnapshot) async {
                             print("deu certo");
                             Navigator.of(context).push(

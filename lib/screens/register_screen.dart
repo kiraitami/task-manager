@@ -116,11 +116,11 @@ class _Register_ScreenState extends State<Register_Screen> {
                     ),
                     onPressed: (){
                       User user  = User();
-                      if (_nameController.text.isNotEmpty)
-                        user.name = _nameController.text;
+                      if (_nameController.text.trim().isNotEmpty)
+                        user.name = _nameController.text.trim();
 
-                      if (_emailController.text.isNotEmpty)
-                        user.email = _emailController.text;
+                      if (_emailController.text.trim().isNotEmpty)
+                        user.email = _emailController.text.trim();
 
                       if (_passController.text.isNotEmpty)
                         user.createUserInFirebase(user.email, _passController.text, context);
