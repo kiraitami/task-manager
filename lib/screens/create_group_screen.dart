@@ -113,7 +113,7 @@ class _CreateGroupState extends State<CreateGroup> {
   }
 
   void _validateInvitedUser(String invitedEmail) {
-
+    FirebaseAuth.instance
   }
 
   Future<Null> _saveGroupInFirebase() async {

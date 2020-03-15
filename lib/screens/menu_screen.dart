@@ -63,7 +63,9 @@ class _MenuScreenState extends State<MenuScreen> {
                       return ListView.builder(
                           itemCount: snapshot.data.documents.length,
                           itemBuilder: (context, index){
-                            return TaskAdapter( snapshot.data.documents[index]['id'] );
+                              return GestureDetector(
+                                child: TaskAdapter( snapshot.data.documents[index]['id'] ),
+                              );
                           }
                       );
                     }
