@@ -5,6 +5,7 @@ import 'package:flutter_app_task_manager/adapters/task_adapter.dart';
 import 'package:flutter_app_task_manager/models/task.dart';
 import 'package:flutter_app_task_manager/screens/create_group_screen.dart';
 import 'package:flutter_app_task_manager/screens/create_task_screen.dart';
+import 'package:flutter_app_task_manager/screens/task_details_screen.dart';
 import 'package:flutter_app_task_manager/adapters/group_adapter.dart';
 
 
@@ -63,10 +64,9 @@ class _MenuScreenState extends State<MenuScreen> {
                       return ListView.builder(
                           itemCount: snapshot.data.documents.length,
                           itemBuilder: (context, index){
-                              return GestureDetector(
-                                child: TaskAdapter( snapshot.data.documents[index]['id'] ),
-                              );
-                          }
+                            return TaskAdapter(snapshot.data.documents[index] ['id']);
+                          },
+
                       );
                     }
                   }
@@ -86,7 +86,12 @@ class _MenuScreenState extends State<MenuScreen> {
                           return ListView.builder(
                               itemCount: snapshot.data.documents.length,
                               itemBuilder: (context, index){
-                                return GroupAdapter( snapshot.data.documents[index]['id'] );
+                                return GestureDetector(
+                                  child: GroupAdapter( snapshot.data.documents[index]['id'] ),
+                                  onTap: () => Scaffold
+                                      .of(context)
+                                      .showSnackBar(SnackBar(content: Text( index.toString()))),
+                                );
                               }
                           );
                         }
