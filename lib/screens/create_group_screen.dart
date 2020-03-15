@@ -106,14 +106,28 @@ class _CreateGroupState extends State<CreateGroup> {
 
 
   void _addUser(){
-    setState(() {
-      _invitedUsers.add(_emailsController.text);
-      _emailsController.clear();
-    });
+    _validateInvitedUser(_emailsController.text);
+    _emailsController.clear();
   }
 
   void _validateInvitedUser(String invitedEmail) {
-    FirebaseAuth.instance
+    Firestore.instance.collection('emails').document(invitedEmail).get().then(
+        (dataSnapshot) {
+          if(dataSnapshot.exists){
+            Firestore.instance.collection('user').document(dataSnapshot.data['uid']).get().then(
+                (userSnapshot) {
+                  print(userSnapshot.data);
+                  if(userSnapshot != null && userSnapshot.exists) {
+                    print(userSnapshot.data);
+                    setState(() {
+                      _invitedUsers.add(userSnapshot.data['name']);
+                    });
+                  }
+                }
+            );
+          }
+        }
+    );
   }
 
   Future<Null> _saveGroupInFirebase() async {

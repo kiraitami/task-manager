@@ -56,6 +56,7 @@ class User extends Model {
     };
 
     Firestore.instance.collection('user').document(this.id).setData( await map);
+    Firestore.instance.collection('emails').document(this.email).setData({'uid' : this.id});
 
   }
 
