@@ -15,6 +15,7 @@ class _CreateGroupState extends State<CreateGroup> {
   final _nameController = TextEditingController();
   final _emailsController = TextEditingController();
   List _invitedUsers = [];
+  List _invitedEmails = [];
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +122,8 @@ class _CreateGroupState extends State<CreateGroup> {
                     print(userSnapshot.data);
                     setState(() {
                       _invitedUsers.add(userSnapshot.data['name']);
+                      _invitedEmails.add(invitedEmail);
+                      _saveGroupInFirebase();
                     });
                   }
                 }
@@ -136,11 +139,11 @@ class _CreateGroupState extends State<CreateGroup> {
 
     Map<String, dynamic> map = {
       'id': await groupID,
-      'name': _nameController.text,
-      'emails' : _invitedUsers
+      'name': _nameController.text.trim(),
+      'emails' : _invitedEmails
     };
 
-    Map<String, dynamic> group ={
+    Map<String, dynamic> group = {
       'id': await groupID
     };
 
