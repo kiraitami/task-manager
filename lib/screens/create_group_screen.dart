@@ -91,7 +91,7 @@ class _CreateGroupState extends State<CreateGroup> {
           child: Icon(Icons.delete, color: Colors.white)
         ),
       ),
-      direction: DismissDirection.startToEnd,
+      direction: DismissDirection.horizontal,
       child: ListTile(
         title: Text(_invitedUsers[index], style: TextStyle(fontSize: 18.0)),
       ),
@@ -110,6 +110,10 @@ class _CreateGroupState extends State<CreateGroup> {
       _invitedUsers.add(_emailsController.text);
       _emailsController.clear();
     });
+  }
+
+  void _validateInvitedUser(String invitedEmail) {
+
   }
 
   Future<Null> _saveGroupInFirebase() async {

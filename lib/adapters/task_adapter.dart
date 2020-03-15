@@ -25,7 +25,10 @@ class TaskAdapter extends StatelessWidget {
                 return Center(child: CircularProgressIndicator());
               }
               else {
-                return _taskTile(snapshot);
+                return GestureDetector(
+                  child: _taskTile(snapshot),
+                  onTap: (){},
+                );
               }
             },
           ),

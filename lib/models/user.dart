@@ -26,7 +26,6 @@ class User extends Model {
               firebaseUser = user;
               await _saveUserData();
               notifyListeners();
-              print("deu certo");
               FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: pass).then(
                       (usersnapshot) async {
                     Navigator.of(context).pop();
@@ -42,7 +41,6 @@ class User extends Model {
     ).catchError( (error) {
       print(error);
       notifyListeners();
-      print('deu errado');
     });
   }
 
